@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/shiyan.iml" filepath="$PROJECT_DIR$/shiyan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiyan-api-dao/shiyan-api-dao.iml" filepath="$PROJECT_DIR$/shiyan-api-dao/shiyan-api-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiyan-api-domain/shiyan-api-domain.iml" filepath="$PROJECT_DIR$/shiyan-api-domain/shiyan-api-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiyan-api-manager/shiyan-api-manager.iml" filepath="$PROJECT_DIR$/shiyan-api-manager/shiyan-api-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiyan-api-service/shiyan-api-service.iml" filepath="$PROJECT_DIR$/shiyan-api-service/shiyan-api-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiyan-api-test/shiyan-api-test.iml" filepath="$PROJECT_DIR$/shiyan-api-test/shiyan-api-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiyan-api-web/shiyan-api-web.iml" filepath="$PROJECT_DIR$/shiyan-api-web/shiyan-api-web.iml" />
+    </modules>
+  </component>
+</project>
+

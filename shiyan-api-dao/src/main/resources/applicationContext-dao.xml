@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+        default-lazy-init="true" default-autowire="byName">
+    <context:component-scan base-package="shiyan.dao"/>
+    <!--<bean id="redisUtils" class="shiyan.util.RedisClientFactoryBean">-->
+        <!--<property name="maxIdle" value="50"/>-->
+        <!--<property name="testOnBorrow" value="false"/>-->
+        <!--<property name="timeout" value="10000"/>-->
+        <!--<property name="masterConfList">-->
+            <!--<list>-->
+                <!--<value>127.0.0.1:6379</value>-->
+                <!--<value>127.0.0.1:7379</value>-->
+                <!--<value>127.0.0.1:8379</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="slaveConfList">-->
+            <!--<list>-->
+                <!--<value>127.0.0.1:6389</value>-->
+                <!--<value>127.0.0.1:6399</value>-->
+                <!--<value>127.0.0.1:7389</value>-->
+                <!--<value>127.0.0.1:7399</value>-->
+                <!--<value>127.0.0.1:8389</value>-->
+                <!--<value>127.0.0.1:8399</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+</beans>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="shiyan-api-web:war">
+    <output-path>$PROJECT_DIR$/shiyan-api-web/target</output-path>
+    <root id="archive" name="shiyan-api-web.war">
+      <element id="artifact" artifact-name="shiyan-api-web:war exploded" />
+    </root>
+  </artifact>
+</component>

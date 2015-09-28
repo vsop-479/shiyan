@@ -11,5 +11,9 @@ public class SomeTest {
         int b = 77;
         System.out.println(a == b);
         System.out.println(a);
+        System.out.println(a);
+        System.out.println(a);
+        System.out.println(a);
+
     }
 }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.Arrays;
 
 /**
  * Created by Administrator on 2015/9/23.
@@ -20,6 +21,7 @@ public class Server {
                 socket.receive(packet);
                 System.out.println("Handling client at " + packet.getAddress().getHostAddress() + " on port " + packet.getPort());
                 System.out.print(new String(packet.getData()));
+                Arrays.copyOfRange(packet.getData(), packet.getOffset(), packet.getOffset() + packet.getLength());
                 socket.send(packet);// Send the same packet back to client
                 packet.setLength(Constants.ECHOMAX);
             }

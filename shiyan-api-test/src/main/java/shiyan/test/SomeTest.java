@@ -8,6 +8,6 @@ public class SomeTest {
     public static void main(String[] args){
         String ss = "adsfsdfsdfsdf";
         byte[] bytes = ss.getBytes();
-        System.out.println(bytes);
+        System.out.println(new String(bytes));
     }
 }

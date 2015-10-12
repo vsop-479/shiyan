@@ -8,7 +8,7 @@ import java.io.*;
  */
 public class FileUploadBase64Str {
     public static void main(String[] args) {
-        String path = "E:\\rain-tree.jpg";
+        String path = "E:\\s.jpg";
         FileInputStream inputStream = null;
         try {
             inputStream = new FileInputStream(path);

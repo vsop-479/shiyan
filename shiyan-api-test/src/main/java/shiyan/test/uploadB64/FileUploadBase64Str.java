@@ -13,12 +13,11 @@ public class FileUploadBase64Str {
         try {
             inputStream = new FileInputStream(path);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-            byte[] bytes = new byte[inputStream.available()];
+            byte[] bytes = new byte[bufferedInputStream.available()];
             bufferedInputStream.read(bytes);
             Base64 base64 = new Base64();
             String strb64 = base64.encodeToString(bytes);
             System.out.println(strb64);
-
             write(strb64);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -29,15 +29,26 @@ public class Server {
                 InputStream inputStream = serSocket.getInputStream();
                 OutputStream outputStream = serSocket.getOutputStream();
                 StringBuilder stb = new StringBuilder();
-                while((recvMsgSize = inputStream.read(receiveBuf)) != -1){
-                    stb.append(new String(receiveBuf));
-                    outputStream.write(receiveBuf, 0 , recvMsgSize);
-                    receiveBuf = new byte[Constants.BUFSIZE];
+                int a;
+                int count = 0;
+                while((a = inputStream.read()) != -1){
+                    outputStream.write(a);
+                    count++;
+                    serverSocket.close();
+                    Thread.sleep(1000);
                 }
+//                while((recvMsgSize = inputStream.read(receiveBuf)) != -1){
+//                    stb.append(new String(receiveBuf));
+//                    outputStream.write(receiveBuf, 0 , recvMsgSize);
+//                    receiveBuf = new byte[Constants.BUFSIZE];
+//                }
                 System.out.println(stb.toString());
+                System.out.println("count: " + count);
                 serSocket.close();
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

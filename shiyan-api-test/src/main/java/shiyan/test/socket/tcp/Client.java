@@ -28,13 +28,16 @@ public class Client {
             int totalRec = 0;
             int length = msg.length;
             int oneceRec = 0;
+            int count = 0;
             while(totalRec < length){
                 if((oneceRec = inputStream.read(msg, totalRec, length - totalRec)) == -1){
                     throw new SocketException("Connection closed prematurely");
                 }
                 totalRec += oneceRec;
+                count++;
             }
             System.out.println("Received: " + new String(msg));
+            System.out.println("count: " + count);
         } catch (IOException e) {
             e.printStackTrace();
         }finally{

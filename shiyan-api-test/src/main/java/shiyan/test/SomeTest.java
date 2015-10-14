@@ -6,8 +6,8 @@ package shiyan.test;
  */
 public class SomeTest {
     public static void main(String[] args){
-        String ss = "adsfsdfsdfsdf";
-        byte[] bytes = ss.getBytes();
-        System.out.println(new String(bytes));
+        byte b = Byte.valueOf("-128");
+        b = (byte)10001 >> 0;
+        System.out.print(b);
     }
 }

@@ -1,8 +1,6 @@
 package shiyan.test.coding;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by Administrator on 2015/10/14.
@@ -75,6 +73,10 @@ public class BruteForceCoding {
             outputStream.flush();
             byte[] bytes = byteArrayOutputStream.toByteArray();
             System.out.println("");
+            DataOutputStream oo2 = new DataOutputStream(new BufferedOutputStream(new ByteArrayOutputStream()));
+            oo2.writeInt(0);
+            DataInputStream ii2 = new DataInputStream(new BufferedInputStream(new ByteArrayInputStream(new byte[0])));
+            ii2.readInt();
         }catch(Exception e){
             e.printStackTrace();
         }

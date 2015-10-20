@@ -4,6 +4,10 @@ package thinking.in.java.chapter2.p16;
  * Created by Administrator on 2015/10/19.
  */
 public class Overloading {
+    /**
+     * test overloading
+     * @param args
+     */
     public static void main(String[] args){
         for(int i = 0; i < 5; i++){
             Tree t = new Tree(i);

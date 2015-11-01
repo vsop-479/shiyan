@@ -15,8 +15,9 @@ public class Fibonacci {
     }
 
     static void print(int i){
+
     }
     public static void main(String[] args){
-        System.out.println(f(8));
+        System.out.println(f(5));
     }
 }

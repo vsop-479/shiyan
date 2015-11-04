@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @Scope("prototype")
+@RequestMapping("/book/")
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -34,25 +35,25 @@ public class BookController {
         System.out.println("BookController init");
     }
 
-    @RequestMapping("/book/add")
+    @RequestMapping("add")
     public String addBook(HttpServletRequest request, HttpServletResponse response, Book book){
         bookService.doService();
         return "book";
     }
 
-    @RequestMapping("/book/get")
+    @RequestMapping("get")
     public String getBook(HttpServletRequest request, HttpServletResponse response, Book book){
         return "book";
     }
 
-    @RequestMapping("/book/getbookson")
+    @RequestMapping("getbookson")
     public @ResponseBody Book getBookson(){
         Book book = new Book();
         book.setAuthor("罗贯中");
         book.setName("三国演义");
         return book;
     }
-    @RequestMapping(value = "/book/getwhat", method = RequestMethod.GET)
+    @RequestMapping(value = "getwhat", method = RequestMethod.GET)
     public String getWhat(HttpServletRequest request, HttpServletResponse response, Book book, RedirectAttributes attr){
         attr.addAttribute("author", book.getAuthor());
         attr.addAttribute("name", book.getName());

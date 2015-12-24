@@ -12,6 +12,7 @@
         <module>shiyan-api-dao</module>
         <module>shiyan-api-domain</module>
         <module>shiyan-api-test</module>
+        <module>shiyan-api-common</module>
     </modules>
     <name>shiyan Maven Webapp</name>
   <url>http://maven.apache.org</url>

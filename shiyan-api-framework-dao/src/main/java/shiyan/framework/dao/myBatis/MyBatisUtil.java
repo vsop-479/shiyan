@@ -16,7 +16,28 @@ public class MyBatisUtil {
         return "GET-" + className.toUpperCase();
     }
 
-    public static String saveSql(String className) {
-        return "SAVE-" + className.toUpperCase();
+    public static String getByIdSql(String className) {
+        return "GET-BY-ID-" + className.toUpperCase();
+    }
+
+    public static String insertSql(String className) {
+        return "INSERT-" + className.toUpperCase();
+    }
+
+
+    public static String batchInsertSql(String className) {
+        return "BATCH-INSERT-" + className.toUpperCase();
+    }
+
+    public static String updateSql(String className) {
+        return "UPDATE-" + className.toUpperCase();
+    }
+
+    public static String batchUpdateSql(String className) {
+        return "BATCH-UPDATE-" + className.toUpperCase();
+    }
+
+    public static String deleteSql(String className) {
+        return "DELETE-" + className.toUpperCase();
     }
 }

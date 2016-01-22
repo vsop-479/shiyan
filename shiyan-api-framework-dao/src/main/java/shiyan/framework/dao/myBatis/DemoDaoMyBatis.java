@@ -1,6 +1,5 @@
 package shiyan.framework.dao.myBatis;
 
-
 import shiyan.framework.dao.DemoDao;
 
 import java.io.Serializable;

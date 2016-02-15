@@ -11,6 +11,9 @@ public class Come {
         System.out.println(A.source);
         System.out.println(cc);
     }
+    class B{
+
+    }
 }
 
 class A{

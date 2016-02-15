@@ -11,6 +11,9 @@ class Value{
 
 /**
  * Created by Administrator on 2016/1/14.
+ * final和static final的区别：
+ * final：每个对象会有一个独立的值，可能不一样
+ * static final：所有对象共享一个值
  */
 public class FinalData {
     private static Random rand = new Random(47);

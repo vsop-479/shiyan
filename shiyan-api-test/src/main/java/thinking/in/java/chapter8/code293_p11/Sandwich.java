@@ -1,4 +1,4 @@
-package thinking.in.java.chapter8.code293;
+package thinking.in.java.chapter8.code293_p11;
 
 /**
  * Created by Administrator on 2016/2/16.
@@ -31,6 +31,10 @@ class Lettuce{
         System.out.println("Lettuce()");
     }
 }
+class Pickle{
+    Pickle(){System.out.println("Pickle()");}
+
+}
 class Lunch extends Meal{
     Lunch(){
         System.out.println("Lunch()");
@@ -45,6 +49,7 @@ public class Sandwich extends PortableLunch{
     private Bread b = new Bread();
     private Cheese c = new Cheese();
     private Lettuce l = new Lettuce();
+    private Pickle p = new Pickle();
     public Sandwich(){
         System.out.println("Sandwich()");
     }

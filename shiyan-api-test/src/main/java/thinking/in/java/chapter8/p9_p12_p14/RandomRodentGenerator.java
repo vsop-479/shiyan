@@ -1,4 +1,4 @@
-package thinking.in.java.chapter8.p9;
+package thinking.in.java.chapter8.p9_p12_p14;
 
 import java.util.Random;
 
@@ -7,12 +7,12 @@ import java.util.Random;
  */
 public class RandomRodentGenerator {
     private Random random = new Random(47);
-    public Rodent next(){
+    public Rodent next(Shared shared){
         switch (random.nextInt(3)){
             default:
-            case 0: return new Gerbil();
-            case 1: return new Hamster();
-            case 2: return new Mouse();
+            case 0: return new Gerbil(shared);
+            case 1: return new Hamster(shared);
+            case 2: return new Mouse(shared);
         }
     }
 }

@@ -28,8 +28,19 @@ class RoundGlyph extends Glyph{
         System.out.println("RoundGlyph.draw(), radius = " + radius);
     }
 }
+class RectangularGlyph extends Glyph{
+    private int radius = 1;
+    RectangularGlyph(int r){
+        radius = r;
+        System.out.println("RectangularGlyph.RectangularGlyph(), radius = " + radius);
+    }
+    void draw(){
+        System.out.println("RectangularGlyph.draw(), radius = " + radius);
+    }
+}
 public class PolyConstructors {
     public static void main(String[] args){
         new RoundGlyph(5);
+        new RectangularGlyph(6);
     }
 }

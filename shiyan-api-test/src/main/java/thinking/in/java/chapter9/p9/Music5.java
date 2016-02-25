@@ -1,0 +1,97 @@
+package thinking.in.java.chapter9.p9;
+
+import thinking.in.java.chapter8.p6_p7_p8.Note;
+
+/**
+ * Created by Administrator on 2016/2/24.
+ * 结果：
+ * Wind.play()MIDDLE_C
+ * Percussion.play()MIDDLE_C
+ * Stringed.play()MIDDLE_C
+ * Brass.play()MIDDLE_C
+ * Woodwind.play()MIDDLE_C
+ */
+abstract class Instrument {
+    int VALUE = 5;
+    abstract void play(Note n);
+    abstract void adjust();
+}
+
+class Wind extends Instrument {
+
+    @Override
+    public void play(Note n) {
+        System.out.println(this + ".play()" + n);
+    }
+    public String toString(){
+        return "Wind";
+    }
+    @Override
+    public void adjust() {
+        System.out.println(this + ".adjust()");
+    }
+}
+
+class Percussion extends Instrument {
+
+    @Override
+    public void play(Note n) {
+        System.out.println(this + ".play()" + n);
+    }
+    public String toString(){
+        return "Percussion";
+    }
+    @Override
+    public void adjust() {
+        System.out.println(this + ".adjust()");
+    }
+}
+
+class Stringed extends Instrument {
+
+    @Override
+    public void play(Note n) {
+        System.out.println(this + ".play()" + n);
+    }
+    public String toString(){
+        return "Stringed";
+    }
+    @Override
+    public void adjust() {
+        System.out.println(this + ".adjust()");
+    }
+}
+
+class Brass extends Wind {
+    public String toString(){
+        return "Brass";
+    }
+}
+
+class Woodwind extends Wind {
+    public String toString(){
+        return "Woodwind";
+    }
+}
+
+public class Music5{
+    static void tune(Instrument i){
+        i.play(Note.MIDDLE_C);
+    }
+    static void tuneAll(Instrument[] e){
+        for (Instrument i : e){
+            tune(i);
+        }
+    }
+
+    public static void main(String[] args){
+        Instrument[] orchestra = {
+                new Wind(),
+                new Percussion(),
+                new Stringed(),
+                new Brass(),
+                new Woodwind()
+        };
+        tuneAll(orchestra);
+    }
+}

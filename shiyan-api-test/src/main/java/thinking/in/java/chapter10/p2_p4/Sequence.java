@@ -1,6 +1,6 @@
-package thinking.in.java.chapter10.p2;
+package thinking.in.java.chapter10.p2_p4;
 
-import thinking.in.java.chapter10.p1.Outer;
+import thinking.in.java.chapter10.p1_p3.Outer;
 
 /**
  * Created by Administrator on 2016/2/29.

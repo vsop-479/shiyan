@@ -1,4 +1,4 @@
-package thinking.in.java.chapter10.p1;
+package thinking.in.java.chapter10.p1_p3;
 
 /**
  * Created by Administrator on 2016/2/29.

@@ -41,7 +41,7 @@ public class BookController {
         return "book";
     }
 
-    @RequestMapping("get")
+    @RequestMapping(value = "get", method=RequestMethod.GET)
     public String getBook(HttpServletRequest request, HttpServletResponse response, Book book){
         return "book";
     }

@@ -44,9 +44,10 @@
         <!--<url-pattern>*.do,*.action</url-pattern>-->
     </servlet-mapping>
 
-    <!--<url-pattern>/</url-pattern>致使首页访问不到-->
+    <!--<url-pattern>/</url-pattern>致使首页访问不到, spring-mvc.xml中default-servlet-handler解决这个问题-->
     <welcome-file-list>
-        <welcome-file>/index.jsp</welcome-file>
+        <!--<welcome-file>/index.html</welcome-file>-->
+        <welcome-file>/WEB-INF/velocity/vm/index.vm</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>

@@ -1,0 +1,20 @@
+<html>
+<head lang="en">
+    <meta content="text/html" charset="UTF-8" http-equiv="content-type">
+    <title>login</title>
+    <script type="text/javascript" language="javascript">
+        function encryptionPassword(){
+            var hash = MD5(document.getElementById("pwd").value);
+            document.getElementById("pwd").value = hash;
+        }
+    </script>
+    <script src="../js/md5.js"></script>
+</head>
+<body>
+    <form method="POST" action="/user/login" onsubmit="encryptionPassword()">
+        <p>name:<input id="name" name="name" type="text" value="" placeholder="用户名"></p>
+        <p>pwd:<input id="pwd" name="pwd" type="password" value="" placeholder="密码"></p>
+        <input type="submit" value="login"/>
+    </form>
+</body>
+</html>

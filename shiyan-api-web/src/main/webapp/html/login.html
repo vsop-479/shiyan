@@ -4,7 +4,7 @@
     <title>login</title>
     <script type="text/javascript" language="javascript">
         function encryptionPassword(){
-            var hash = MD5(document.getElementById("pwd").value);
+            var hash = MD5(document.getElementById("pwd").value + "guwenna");
             document.getElementById("pwd").value = hash;
         }
     </script>

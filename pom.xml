@@ -24,8 +24,8 @@
                <artifactId>maven-compiler-plugin</artifactId>
                <version>2.0.2</version>
                <configuration>
-                   <source>1.5</source>
-                   <target>1.5</target>
+                   <source>1.8</source>
+                   <target>1.8</target>
                </configuration>
            </plugin>
        </plugins>
@@ -54,13 +54,15 @@
    </build>
 
     <properties>
-        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
         <shiyan.shiyan-api-domain.version>1.0-SNAPSHOT</shiyan.shiyan-api-domain.version>
         <shiyan.shiyan-api-dao.version>1.0-SNAPSHOT</shiyan.shiyan-api-dao.version>
         <shiyan.shiyan-api-manager.version>1.0-SNAPSHOT</shiyan.shiyan-api-manager.version>
         <shiyan.shiyan-api-service.version>1.0-SNAPSHOT</shiyan.shiyan-api-service.version>
         <velocity.version>1.7</velocity.version>
         <velocity-tools.version>2.0</velocity-tools.version>
+        <mongo-java.version>3.2.2</mongo-java.version>
+        <gson.version>2.5</gson.version>
     </properties>
 
     <dependencies>
@@ -142,6 +144,16 @@
             <artifactId>velocity-tools</artifactId>
             <version>2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>${mongo-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -156,6 +168,8 @@
             <properties>
                 <name>asdffdf</name>
                 <age>44</age>
+                <mongo.host>localhost</mongo.host>
+                <mongo.port>9911</mongo.port>
             </properties>
 
         </profile>

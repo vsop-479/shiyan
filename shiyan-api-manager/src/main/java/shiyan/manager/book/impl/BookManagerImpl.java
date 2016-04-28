@@ -1,10 +1,16 @@
 package shiyan.manager.book.impl;
 
+import com.google.gson.Gson;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import shiyan.common.mongo.MongoUtil;
 import shiyan.dao.book.BookDao;
 import shiyan.manager.book.BookManager;
-
+import shiyan.domain.Book;
 /**
  * Created by Administrator on 2015/9/15.
  */
@@ -12,6 +18,8 @@ import shiyan.manager.book.BookManager;
 public class BookManagerImpl implements BookManager {
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private MongoUtil mongoUtil;
 
     public BookDao getBookDao() {
         return bookDao;
@@ -25,5 +33,14 @@ public class BookManagerImpl implements BookManager {
     public void doManager() {
         System.out.println("BookManagerImpl");
         bookDao.doDao();
+    }
+
+    public Book getBook(){
+        MongoCollection<Document> collection = mongoUtil.getCollection("gw", "book");
+        FindIterable<Document> documents = collection.find();
+        MongoCursor<Document> iterator = documents.iterator();
+        Document next = iterator.next();
+        Book book = new Gson().fromJson(next.toJson(), Book.class);
+        return book;
     }
 }

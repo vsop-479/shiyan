@@ -2,6 +2,7 @@ package shiyan.service.book.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shiyan.domain.Book;
 import shiyan.manager.book.BookManager;
 import shiyan.service.book.BookService;
 
@@ -26,5 +27,9 @@ public class BookServiceImpl implements BookService {
         System.out.println("BookServiceImpl");
         bookManager.doManager();
         return false;
+    }
+
+    public Book getBook(){
+        return bookManager.getBook();
     }
 }

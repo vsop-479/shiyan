@@ -1,6 +1,7 @@
 package shiyan.service.book.impl;
 
 import org.springframework.stereotype.Service;
+import shiyan.domain.Book;
 import shiyan.service.book.BookService;
 
 /**
@@ -12,5 +13,10 @@ public class OtherServiceImpl implements BookService {
     public boolean doService() {
         System.out.println("OtherServiceImpl");
         return false;
+    }
+
+    @Override
+    public Book getBook() {
+        return null;
     }
 }

@@ -1,0 +1,9 @@
+<html>
+<title>welcome</title>
+<body>
+<h2>$book.title</h2>
+<br>$book.dynasty ---- $book.author
+<br>$book.content
+<br>$book.oid
+</body>
+</html>

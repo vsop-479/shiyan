@@ -5,8 +5,10 @@ package shiyan.domain;
  */
 public class Book {
     private String oid;
-    private String name;
+    private String title;
+    private String dynasty;
     private String author;
+    private String content;
 
     public String getOid() {
         return oid;
@@ -16,12 +18,20 @@ public class Book {
         this.oid = oid;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDynasty() {
+        return dynasty;
+    }
+
+    public void setDynasty(String dynasty) {
+        this.dynasty = dynasty;
     }
 
     public String getAuthor() {
@@ -30,5 +40,13 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

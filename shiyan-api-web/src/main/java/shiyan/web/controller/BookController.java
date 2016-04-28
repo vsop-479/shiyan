@@ -1,11 +1,13 @@
 package shiyan.web.controller;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shiyan.domain.Book;
 import shiyan.service.book.BookService;
@@ -42,21 +44,30 @@ public class BookController {
     }
 
     @RequestMapping(value = "get", method=RequestMethod.GET)
-    public String getBook(HttpServletRequest request, HttpServletResponse response, Book book){
-        return "book";
+    public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Book book){
+        Book book1 = bookService.getBook();
+        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("author", book.getAuthor());
+//        modelAndView.addObject("content", book.getContent());
+//        modelAndView.addObject("dynasty", book.getDynasty());
+//        modelAndView.addObject("oid", book.getOid());
+//        modelAndView.addObject("title", book.getTitle());
+        modelAndView.addObject("book", book1);
+        modelAndView.setViewName("book");
+        return modelAndView;
     }
 
     @RequestMapping("getbookson")
     public @ResponseBody Book getBookson(){
+        bookService.doService();
         Book book = new Book();
         book.setAuthor("罗贯中");
-        book.setName("三国演义");
         return book;
     }
     @RequestMapping(value = "getwhat", method = RequestMethod.GET)
     public String getWhat(HttpServletRequest request, HttpServletResponse response, Book book, RedirectAttributes attr){
         attr.addAttribute("author", book.getAuthor());
-        attr.addAttribute("name", book.getName());
+
         return "redirect:/book/get";
     }
 }

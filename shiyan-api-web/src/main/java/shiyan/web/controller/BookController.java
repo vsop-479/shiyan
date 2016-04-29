@@ -1,6 +1,5 @@
 package shiyan.web.controller;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shiyan.domain.Book;
 import shiyan.service.book.BookService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,11 +45,6 @@ public class BookController {
     public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Book book){
         Book book1 = bookService.getBook();
         ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("author", book.getAuthor());
-//        modelAndView.addObject("content", book.getContent());
-//        modelAndView.addObject("dynasty", book.getDynasty());
-//        modelAndView.addObject("oid", book.getOid());
-//        modelAndView.addObject("title", book.getTitle());
         modelAndView.addObject("book", book1);
         modelAndView.setViewName("book");
         return modelAndView;

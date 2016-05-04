@@ -2,10 +2,16 @@ package shiyan.common.mongo;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.PostConstruct;
@@ -36,6 +42,20 @@ public class MongoUtil {
     }
 
     public void init(){
+//        CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
+//                CodecRegistries.fromCodecs(new LocalDateCodec()),
+//                CodecRegistries.fromProviders(
+//                        new RaCodecProvider(),
+//                        new DutyBlockCodecProvider(),
+//                        new ScheduledDutyCodecProvider()),
+//                MongoClient.getDefaultCodecRegistry()
+//        );
+//        MongoClientOptions options = MongoClientOptions.builder()
+//                .codecRegistry(codecRegistry).build();
+//        mongoClient = new MongoClient(new ServerAddress(host, port), options);
+        //如果想像下面指定装换类型查询，就要像上面那样为Article实现Codec<Article>
+        //参照 http://stackoverflow.com/questions/30569228/mongodb-bson-codec-not-being-used-while-encoding-object
+//        FindIterable<Article> articles = collection.find(Article.class);
         mongoClient = new MongoClient(host, port);
     }
     public MongoDatabase getDatabase(String name){

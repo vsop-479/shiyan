@@ -175,7 +175,7 @@
                 <name>asdffdf</name>
                 <age>44</age>
                 <mongo.host>localhost</mongo.host>
-                <mongo.port>9911</mongo.port>
+                <mongo.port>27000</mongo.port>
             </properties>
 
         </profile>

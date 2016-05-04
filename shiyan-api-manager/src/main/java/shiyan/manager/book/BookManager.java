@@ -1,7 +1,7 @@
 package shiyan.manager.book;
 
 import org.springframework.stereotype.Component;
-import shiyan.domain.Book;
+import shiyan.domain.Article;
 
 /**
  * Created by Administrator on 2015/9/15.
@@ -9,5 +9,5 @@ import shiyan.domain.Book;
 @Component
 public interface BookManager {
     public void doManager();
-    public Book getBook();
+    public Article getBook();
 }

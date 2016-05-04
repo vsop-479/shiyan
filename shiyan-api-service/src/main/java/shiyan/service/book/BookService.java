@@ -1,7 +1,7 @@
 package shiyan.service.book;
 
 import org.springframework.stereotype.Service;
-import shiyan.domain.Book;
+import shiyan.domain.Article;
 
 /**
  * Created by Administrator on 2015/9/14.
@@ -9,5 +9,5 @@ import shiyan.domain.Book;
 @Service
 public interface BookService {
     public boolean doService();
-    public Book getBook();
+    public Article getBook();
 }

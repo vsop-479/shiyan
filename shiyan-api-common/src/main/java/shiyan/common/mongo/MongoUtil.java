@@ -47,10 +47,9 @@ public class MongoUtil {
     }
 
     public static void main(String[] args){
-        MongoClient mongoClient = new MongoClient("localhost", 9911);
-        MongoDatabase gw = mongoClient.getDatabase("gw");
-        gw.drop();
-        MongoCollection<Document> book = gw.getCollection("book");
+        MongoClient mongoClient = new MongoClient("localhost", 27000);
+        MongoDatabase guwen = mongoClient.getDatabase("guwen");
+        MongoCollection<Document> articles = guwen.getCollection("articles");
         Document d = new Document();
         d.append("oid", UUID.randomUUID().toString());
         d.append("title", "新凉");
@@ -58,7 +57,7 @@ public class MongoUtil {
         d.append("author", "徐玑");
         d.append("content", "水满田畴稻叶齐，日光穿树晓烟低。\n" +
                         "黄莺也爱新凉好，飞过青山影里啼。");
-        book.insertOne(d);
+        articles.insertOne(d);
         System.out.print("");
     }
 }

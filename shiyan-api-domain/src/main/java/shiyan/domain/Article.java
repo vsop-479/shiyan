@@ -3,7 +3,7 @@ package shiyan.domain;
 /**
  * Created by Administrator on 2015/9/11.
  */
-public class Book {
+public class Article {
     private String oid;
     private String title;
     private String dynasty;

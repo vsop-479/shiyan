@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import shiyan.common.mongo.MongoUtil;
 import shiyan.dao.book.BookDao;
 import shiyan.manager.book.BookManager;
-import shiyan.domain.Book;
+import shiyan.domain.Article;
 /**
  * Created by Administrator on 2015/9/15.
  */
@@ -35,12 +35,12 @@ public class BookManagerImpl implements BookManager {
         bookDao.doDao();
     }
 
-    public Book getBook(){
+    public Article getBook(){
         MongoCollection<Document> collection = mongoUtil.getCollection("gw", "book");
         FindIterable<Document> documents = collection.find();
         MongoCursor<Document> iterator = documents.iterator();
         Document next = iterator.next();
-        Book book = new Gson().fromJson(next.toJson(), Book.class);
-        return book;
+        Article article = new Gson().fromJson(next.toJson(), Article.class);
+        return article;
     }
 }

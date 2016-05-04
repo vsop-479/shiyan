@@ -1,0 +1,9 @@
+<html>
+<title>welcome</title>
+<body>
+<h2>$article.title</h2>
+<br>$article.dynasty ---- $article.author
+<br>$article.content
+<br>$article.oid
+</body>
+</html>

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import shiyan.domain.Book;
+import shiyan.domain.Article;
 import shiyan.service.book.BookService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,30 +36,31 @@ public class BookController {
     }
 
     @RequestMapping("add")
-    public String addBook(HttpServletRequest request, HttpServletResponse response, Book book){
+    public String addBook(HttpServletRequest request, HttpServletResponse response, Article article){
         bookService.doService();
         return "book";
     }
 
     @RequestMapping(value = "get", method=RequestMethod.GET)
-    public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Book book){
-        Book book1 = bookService.getBook();
+    public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Article article){
+        Article article1 = bookService.getBook();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("book", book1);
-        modelAndView.setViewName("book");
+        modelAndView.addObject("article", article1);
+        modelAndView.setViewName("article");
         return modelAndView;
     }
 
     @RequestMapping("getbookson")
-    public @ResponseBody Book getBookson(){
+    public @ResponseBody
+    Article getBookson(){
         bookService.doService();
-        Book book = new Book();
-        book.setAuthor("罗贯中");
-        return book;
+        Article article = new Article();
+        article.setAuthor("罗贯中");
+        return article;
     }
     @RequestMapping(value = "getwhat", method = RequestMethod.GET)
-    public String getWhat(HttpServletRequest request, HttpServletResponse response, Book book, RedirectAttributes attr){
-        attr.addAttribute("author", book.getAuthor());
+    public String getWhat(HttpServletRequest request, HttpServletResponse response, Article article, RedirectAttributes attr){
+        attr.addAttribute("author", article.getAuthor());
 
         return "redirect:/book/get";
     }

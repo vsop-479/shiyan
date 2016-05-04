@@ -1,9 +1,11 @@
 package shiyan.manager.book.impl;
 
 import com.google.gson.Gson;
+import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,9 @@ public class BookManagerImpl implements BookManager {
     private BookDao bookDao;
     @Autowired
     private MongoUtil mongoUtil;
+//    @Autowired
+//    private MongoClient mongo;
+
 
     public BookDao getBookDao() {
         return bookDao;
@@ -36,11 +41,15 @@ public class BookManagerImpl implements BookManager {
     }
 
     public Article getBook(){
-        MongoCollection<Document> collection = mongoUtil.getCollection("gw", "book");
+        MongoCollection<Document> collection = mongoUtil.getCollection("guwen", "articles");
         FindIterable<Document> documents = collection.find();
         MongoCursor<Document> iterator = documents.iterator();
         Document next = iterator.next();
         Article article = new Gson().fromJson(next.toJson(), Article.class);
+
+
+
+
         return article;
     }
 }

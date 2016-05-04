@@ -6,14 +6,13 @@
         http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo.xsd"
        default-lazy-init="true" default-autowire="byName">
-    <!--java mongo本身操作已经很简单，目前spring的整合反而过于复杂，不建议用-->
     <mongo:mongo-client id="mongoClient" host="localhost" port="27000">
         <mongo:client-options connect-timeout="30000"/>
     </mongo:mongo-client>
-    <mongo:db-factory dbname="guwen" mongo-ref="mongoClient" id="mongoDbFactory"/>
-    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    <mongo:db-factory id="mongoDbFactoryGW" dbname="guwen" mongo-ref="mongoClient" />
+    <bean id="mongoTemplateGW" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactoryGW"/>
     </bean>
-    <mongo:mapping-converter base-package="shiyan.domain"/>
-    <mongo:repositories base-package="shiyan.dao"/>
+    <!--<mongo:mapping-converter base-package="shiyan.domain"/>-->
+    <!--<mongo:repositories base-package="shiyan.dao"/>-->
 </beans>

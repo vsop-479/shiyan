@@ -41,13 +41,12 @@ public class BookManagerImpl implements BookManager {
     }
 
     public Article getBook(){
-        MongoCollection<Document> collection = mongoUtil.getCollection("guwen", "articles");
-        FindIterable<Document> documents = collection.find();
-        MongoCursor<Document> iterator = documents.iterator();
-        Document next = iterator.next();
-        Article article = new Gson().fromJson(next.toJson(), Article.class);
-
-
+//        MongoCollection<Document> collection = mongoUtil.getCollection("guwen", "articles");
+//        FindIterable<Document> documents = collection.find();
+//        MongoCursor<Document> iterator = documents.iterator();
+//        Document next = iterator.next();
+//        Article article = new Gson().fromJson(next.toJson(), Article.class);
+        Article article = bookDao.getArticle();
 
 
         return article;

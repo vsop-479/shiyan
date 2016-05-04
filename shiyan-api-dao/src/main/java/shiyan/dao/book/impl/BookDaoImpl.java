@@ -13,9 +13,8 @@ import shiyan.domain.Article;
  */
 @Repository("bookDao")
 public class BookDaoImpl implements BookDao {
-    //java mongo本身操作已经很简单，目前spring的整合反而过于复杂，不建议用
       @Autowired
-     private MongoTemplate mongoTemplate;
+     private MongoTemplate mongoTemplateGW;
 //    @Autowired
 //    private RedisUtils redisUtils;
 //
@@ -34,6 +33,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Article getArticle() {
-        return mongoTemplate.findOne(new Query(), Article.class);
+        Article one = mongoTemplateGW.findOne(new Query(), Article.class, "articles");
+        return one;
     }
 }

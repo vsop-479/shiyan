@@ -6,6 +6,8 @@ import shiyan.domain.Article;
 import shiyan.manager.book.BookManager;
 import shiyan.service.book.BookService;
 
+import java.util.Map;
+
 /**
  * Created by Administrator on 2015/9/14.
  */
@@ -29,7 +31,7 @@ public class BookServiceImpl implements BookService {
         return false;
     }
 
-    public Article getBook(){
-        return bookManager.getBook();
+    public Article getBook(Map map){
+        return bookManager.getBook(map);
     }
 }

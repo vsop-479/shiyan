@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import shiyan.domain.Article;
 import shiyan.service.book.BookService;
 
+import java.util.Map;
+
 /**
  * Created by Administrator on 2015/9/14.
  */
@@ -16,7 +18,7 @@ public class OtherServiceImpl implements BookService {
     }
 
     @Override
-    public Article getBook() {
+    public Article getBook(Map title) {
         return null;
     }
 }

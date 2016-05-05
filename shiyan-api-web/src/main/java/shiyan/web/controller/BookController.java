@@ -3,6 +3,7 @@ package shiyan.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,8 @@ import shiyan.domain.Article;
 import shiyan.service.book.BookService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2015/9/10.
@@ -41,9 +44,13 @@ public class BookController {
         return "book";
     }
 
-    @RequestMapping(value = "get", method=RequestMethod.GET)
-    public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Article article){
-        Article article1 = bookService.getBook();
+    @RequestMapping(value = "get/{title}/{author}", method=RequestMethod.GET)
+    public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Article article, @PathVariable String title, @PathVariable String author){
+        Map map = new HashMap();
+        map.put("title", title);
+        map.put("author", author);
+        Article article1 = bookService.getBook(map);
+        article1.setContent(article1.getContent().replace("\n", "<p>"));
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("article", article1);
         modelAndView.setViewName("article");

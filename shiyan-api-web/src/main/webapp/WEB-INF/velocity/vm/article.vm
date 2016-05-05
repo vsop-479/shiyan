@@ -1,9 +1,16 @@
 <html>
 <title>welcome</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/article.css">
+</head>
 <body>
-<h2>$article.title</h2>
-<br>$article.dynasty ---- $article.author
-<br>$article.content
-<br>$article.oid
+<div class="article">
+    <h2>$article.title</h2>
+    <span class="author">
+     $article.dynasty -- $article.author
+    </span>
+    <br>$article.content
+    <br>$article.oid
+</div>
 </body>
 </html>

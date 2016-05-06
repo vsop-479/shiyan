@@ -1,12 +1,17 @@
 <html>
 <title>welcome</title>
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/html-override.css">
     <link rel="stylesheet" type="text/css" href="/css/article.css">
 </head>
 <body>
-<div class="article">
+    <div class="top-tool-bar">
+##        请求服务端，由服务端判断用户是否登录等
+        <a href="/book/add">add</a>
+    </div>
+    <div class="article">
     <h2>$article.title</h2>
-    <span class="author">
+        <span class="author">
      $article.dynasty -- $article.author
     </span>
     <br>$article.content

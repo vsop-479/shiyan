@@ -39,9 +39,10 @@ public class BookController {
     }
 
     @RequestMapping("add")
-    public String addBook(HttpServletRequest request, HttpServletResponse response, Article article){
-        bookService.doService();
-        return "book";
+    public ModelAndView addBook(HttpServletRequest request, HttpServletResponse response, Article article){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("add-article");
+        return modelAndView;
     }
 
     @RequestMapping(value = "get/{title}/{author}", method=RequestMethod.GET)

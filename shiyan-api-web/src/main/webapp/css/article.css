@@ -1,3 +1,6 @@
+.top-tool-bar{
+    float: right;
+}
 .article {
     position: relative;
     width: 70em;
@@ -5,14 +8,15 @@
     margin: 0px auto;
     padding-left: 0px;
     overflow: hidden;
+    text-align: justify;
 }
 .author{
-    text-align: right;
     font-family: "楷体",KaiTi,"楷体_GB2312",KaiTi_GB2312,SimKai;
     font-size: 18px;
+    float: right;/*居右*/
 }
 .dynasty{
-    text-align: right;
     font-family: "微软雅黑","Microsoft YaHei";
     font-size: 18px;
+    float: right;
 }

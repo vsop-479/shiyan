@@ -1,0 +1,17 @@
+/*在此覆盖html标签默认的样式*/
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+textarea{
+    /*去掉滚动条*/
+    /*overflow:hidden;*/
+}

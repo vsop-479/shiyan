@@ -5,18 +5,31 @@
     <link rel="stylesheet" type="text/css" href="/css/html-override.css">
     <script language="JavaScript" type="text/javascript">
         function submitArticle(){
-            alert("dsf");
-            console.info($("#title"));
-            alert($("#title").value);
+            console.info($("#title").val());
+            console.info($("#author").val());
+            console.info($("#dynasty").val());
+            console.info($("#content").val());
+            var article = new Object;
+            article.title = $("#title").val();
+            article.author = $("#author").val();
+            article.dynasty = $("#dynasty").val();
+            article.content = $("#content").val();
+            $.post({
+                url:"/book/add",
+                data:article,
+                success:function(){
+                    alert("success");
+                }
+            });
         }
     </script>
 </head>
 <body>
 <div class="article">
     标题<input id="title" name="title" type="text" value="" placeholder="标题"><br>
-    作者<input name="author" type="text" value="" placeholder="作者"><br>
-    朝代<input name="dynasty" type="text" value="" placeholder="朝代"><br>
-    内容<textarea name="content" cols="100" value="" rows="20" placeholder="内容"></textarea><br>
+    作者<input id="author" name="author" type="text" value="" placeholder="作者"><br>
+    朝代<input id="dynasty" name="dynasty" type="text" value="" placeholder="朝代"><br>
+    内容<textarea id="content" name="content" cols="100" value="" rows="20" placeholder="内容"></textarea><br>
     <a href="#" onclick="submitArticle()">submit</a>
 </div>
 </body>

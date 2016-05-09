@@ -38,13 +38,19 @@ public class BookController {
         System.out.println("BookController init");
     }
 
-    @RequestMapping("add")
-    public ModelAndView addBook(HttpServletRequest request, HttpServletResponse response, Article article){
+    @RequestMapping("toAdd")
+    public ModelAndView toBook(HttpServletRequest request, HttpServletResponse response, Article article){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-article");
         return modelAndView;
     }
 
+    @RequestMapping("add")
+    public void addBook(HttpServletRequest request, HttpServletResponse response, Article article){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("add-article");
+//        return modelAndView;
+    }
     @RequestMapping(value = "get/{title}/{author}", method=RequestMethod.GET)
     public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Article article, @PathVariable String title, @PathVariable String author){
         Map map = new HashMap();

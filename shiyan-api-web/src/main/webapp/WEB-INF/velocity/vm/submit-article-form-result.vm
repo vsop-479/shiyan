@@ -1,0 +1,7 @@
+<html>
+<title>welcome</title>
+<body>
+<br>$result.msg<br>
+<br><a href="/book/toAdd">再来一篇</a>
+</body>
+</html>

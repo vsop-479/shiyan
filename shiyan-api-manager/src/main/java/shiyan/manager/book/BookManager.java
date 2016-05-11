@@ -12,4 +12,5 @@ import java.util.Map;
 public interface BookManager {
     public void doManager();
     public Article getBook(Map map);
+    public void add(Article article)throws Exception;
 }

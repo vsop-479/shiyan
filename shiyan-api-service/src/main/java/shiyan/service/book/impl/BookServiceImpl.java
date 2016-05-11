@@ -34,4 +34,8 @@ public class BookServiceImpl implements BookService {
     public Article getBook(Map map){
         return bookManager.getBook(map);
     }
+
+    public void addArticle(Article article)throws Exception{
+        bookManager.add(article);
+    }
 }

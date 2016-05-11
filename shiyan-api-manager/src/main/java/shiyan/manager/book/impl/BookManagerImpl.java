@@ -48,4 +48,8 @@ public class BookManagerImpl implements BookManager {
 
         return article;
     }
+
+    public void add(Article article)throws Exception{
+        bookDao.add(article);
+    }
 }

@@ -14,4 +14,5 @@ public interface BookDao {
     public void doDao();
     public Article getArticle(Map map);
     public List<Article> getArticles();
+    public void add(Article article)throws Exception;
 }

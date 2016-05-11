@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shiyan.domain.Article;
+import shiyan.domain.result.Result;
 import shiyan.service.book.BookService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2015/9/10.
@@ -22,7 +24,7 @@ import java.util.Map;
 @Controller
 @Scope("prototype")
 @RequestMapping("/book/")
-public class BookController {
+public class BookController extends BaseController{
     @Autowired
     private BookService bookService;
 
@@ -45,12 +47,41 @@ public class BookController {
         return modelAndView;
     }
 
+//    @RequestMapping("add")
+//    public Result add(HttpServletRequest request, HttpServletResponse response, Article article){
+//        Result result = new Result();
+//        try{
+//            article.setOid(UUID.randomUUID().toString());
+//            bookService.addArticle(article);
+//            result.setSuccess(true);
+//            result.setMsg(article.getTitle() + ":添加成功");
+//        }catch (Exception e){
+//            logger.error("", e);
+//            result.setMsg(article.getTitle() + ":失败原因");
+//            result.setSuccess(false);
+//        }
+//        return result;
+//    }
+
     @RequestMapping("add")
-    public void addBook(HttpServletRequest request, HttpServletResponse response, Article article){
+    public ModelAndView add(HttpServletRequest request, HttpServletResponse response, Article article){
+        Result result = new Result();
+        try{
+            article.setOid(UUID.randomUUID().toString());
+            bookService.addArticle(article);
+            result.setSuccess(true);
+            result.setMsg(article.getTitle() + ":添加成功");
+        }catch (Exception e){
+            logger.error("", e);
+            result.setMsg(article.getTitle() + ":失败原因");
+            result.setSuccess(false);
+        }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-article");
-//        return modelAndView;
+        modelAndView.setViewName("submit-article-form-result");
+        modelAndView.addObject("result", result);
+        return modelAndView;
     }
+
     @RequestMapping(value = "get/{title}/{author}", method=RequestMethod.GET)
     public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Article article, @PathVariable String title, @PathVariable String author){
         Map map = new HashMap();

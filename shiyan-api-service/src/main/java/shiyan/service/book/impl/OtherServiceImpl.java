@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by Administrator on 2015/9/14.
  */
 @Service("otherService")
-public class OtherServiceImpl implements BookService {
+public abstract class OtherServiceImpl implements BookService {
     @Override
     public boolean doService() {
         System.out.println("OtherServiceImpl");

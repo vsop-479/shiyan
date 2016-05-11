@@ -57,6 +57,10 @@ public class BookDaoImpl implements BookDao {
         return one;
     }
 
+    public void add(Article article)throws Exception{
+        mongoTemplateGW.insert(article, "articles");
+    }
+
     @Override
     public List<Article> getArticles() {
         List<Article> articles = mongoTemplateGW.find(new Query(), Article.class, "articles");

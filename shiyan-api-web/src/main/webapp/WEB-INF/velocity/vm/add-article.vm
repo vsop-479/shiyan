@@ -4,11 +4,8 @@
     <script src="/js/jquery-1.12.3.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/html-override.css">
     <script language="JavaScript" type="text/javascript">
+##        ajax请求不能刷新页面，若要新的页面则用form
         function submitArticle(){
-            console.info($("#title").val());
-            console.info($("#author").val());
-            console.info($("#dynasty").val());
-            console.info($("#content").val());
             var article = new Object;
             article.title = $("#title").val();
             article.author = $("#author").val();
@@ -22,15 +19,22 @@
                 }
             });
         }
+
+    function submitArticleByForm() {
+        $("#submit-article-form").submit();
+    }
     </script>
 </head>
 <body>
 <div class="article">
-    标题<input id="title" name="title" type="text" value="" placeholder="标题"><br>
-    作者<input id="author" name="author" type="text" value="" placeholder="作者"><br>
-    朝代<input id="dynasty" name="dynasty" type="text" value="" placeholder="朝代"><br>
-    内容<textarea id="content" name="content" cols="100" value="" rows="20" placeholder="内容"></textarea><br>
-    <a href="#" onclick="submitArticle()">submit</a>
+    <form id="submit-article-form" action="/book/add" method="post">
+        标题<input id="title" name="title" type="text" value="" placeholder="标题"><br>
+        作者<input id="author" name="author" type="text" value="" placeholder="作者"><br>
+        朝代<input id="dynasty" name="dynasty" type="text" value="" placeholder="朝代"><br>
+        内容<textarea id="content" name="content" cols="100" value="" rows="20" placeholder="内容"></textarea><br>
+    </form>
+    <a href="#" onclick="submitArticle()">ajax-submit</a>
+    <a href="#" onclick="submitArticleByForm()">form-submit</a>
 </div>
 </body>
 </html>

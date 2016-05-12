@@ -3,15 +3,14 @@ package shiyan.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shiyan.domain.Article;
 import shiyan.domain.result.Result;
 import shiyan.service.book.BookService;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -84,6 +83,10 @@ public class BookController extends BaseController{
 
     @RequestMapping(value = "get/{title}/{author}", method=RequestMethod.GET)
     public ModelAndView getBook(HttpServletRequest request, HttpServletResponse response, Article article, @PathVariable String title, @PathVariable String author){
+        Cookie cookie = new Cookie("user-key", UUID.randomUUID().toString());
+        cookie.setMaxAge(60*60);
+        cookie.setPath("/");//对整个项目可见, 通过setDomain可设置整个网站有效
+        response.addCookie(cookie);
         Map map = new HashMap();
         map.put("title", title);
         map.put("author", author);

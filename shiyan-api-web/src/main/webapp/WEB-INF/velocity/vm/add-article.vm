@@ -2,6 +2,7 @@
 <title>add-article</title>
 <head>
     <script src="/js/jquery-1.12.3.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/html-override.css">
     <script language="JavaScript" type="text/javascript">
 ##        ajax请求不能刷新页面，若要新的页面则用form
@@ -21,6 +22,9 @@
         }
 
     function submitArticleByForm() {
+//        设置cookie对整个项目有效
+        $.cookie('jqc-name', 'jqc-value', {path: '/' });
+        document.cookie = "cname=cvalue;path=/";
         $("#submit-article-form").submit();
     }
     </script>

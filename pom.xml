@@ -64,6 +64,11 @@
         <mongo-java.version>3.2.2</mongo-java.version>
         <gson.version>2.5</gson.version>
         <spring-mongo.version>1.9.1.RELEASE</spring-mongo.version>
+        <dbcp2.version>2.1.1</dbcp2.version>
+        <!--<mysql.version>6.0.2</mysql.version>-->
+        <mysql.version>5.1.27</mysql.version>
+        <mybaits.version>3.4.0</mybaits.version>
+        <mybaits-spring.version>1.3.0</mybaits-spring.version>
     </properties>
 
     <dependencies>
@@ -160,6 +165,31 @@
             <artifactId>spring-data-mongodb</artifactId>
             <version>${spring-mongo.version}</version>
         </dependency>
+
+        <!--mysql-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${dbcp2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!--mybatis-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybaits.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybaits-spring.version}</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
@@ -176,6 +206,18 @@
                 <age>44</age>
                 <mongo.host>localhost</mongo.host>
                 <mongo.port>27000</mongo.port>
+                <dataSource.driverClassName>com.mysql.jdbc.Driver</dataSource.driverClassName>
+                <dataSource.url>
+                    <![CDATA[
+                    jdbc:mysql://localhost:3306/order?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;zeroDateTimeBehavior=convertToNull
+                ]]>
+                </dataSource.url>
+                <dataSource.username>orderadmin</dataSource.username>
+                <dataSource.password>orderadmin</dataSource.password>
+                <dataSource.initialSize>5</dataSource.initialSize>
+                <dataSource.maxTotal>30</dataSource.maxTotal>
+                <dataSource.maxIdle>50</dataSource.maxIdle>
+                <dataSource.maxWaitMillis>10000</dataSource.maxWaitMillis>
             </properties>
 
         </profile>

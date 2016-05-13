@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration debug="true">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%p [%t] %c{1}.%M(%L) | %m%n" />
+        </layout>
+    </appender>
+
+    <logger name="java.sql">
+        <level value="debug"/>
+    </logger>
+    <root>
+        <!--默认的输出级别，针对没有指定level的-->
+        <level value="INFO" />
+        <!--默认的appender，针对没有指定appender的-->
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</log4j:configuration>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shiyan.domain.user.UserMapper">
+    <!--通过flushStatements，批量操作，忽略错误，继续执行-->
+    <insert id="INSERT-USER" parameterType="user">
+        INSERT INTO users
+        (oid, createTime, updateTime, name, pwd, email, phone)
+        VALUES
+        (#{oid}, #{createTime}, #{updateTime}, #{name}, #{pwd}, #{email}, #{phone})
+    </insert>
+
+    <update id="UPDATE-USER" parameterType="user">
+        UPDATE users
+        <set>
+            updateTime = #{updateTime},  name = #{name}, pwd = #{pwd}, email = #{email}, phone = #{phone}
+        </set>
+        <where>
+            oid = #{oid}
+        </where>
+    </update>
+
+    <delete id="DELETE-USER" parameterType="java.lang.String">
+        DELETE FROM users
+        <where>
+            oid = #{oid}
+        </where>
+    </delete>
+
+    <select id="GET-USER" parameterType="java.lang.String">
+        select oid, createTime, updateTime, name, pwd, email, phone FROM users
+        <where>
+            name = #{name}
+        </where>
+    </select>
+</mapper>

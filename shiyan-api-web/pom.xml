@@ -164,6 +164,11 @@
             <artifactId>shiyan-api-service</artifactId>
             <version>${shiyan.shiyan-api-service.version}</version>
         </dependency>
+        <dependency>
+            <groupId>shiyan</groupId>
+            <artifactId>shiyan-api-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

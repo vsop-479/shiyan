@@ -1,6 +1,10 @@
 <html>
 <title>welcome</title>
+<head>
+    <meta content="text/html" charset="UTF-8" http-equiv="content-type">
+</head>
 <body>
-<br>AbstractConnector<br>
+<br>welcome<br>
+<a href="/html/register.html">註冊</a> <a href="/html/login.html">登錄</a>
 </body>
 </html>

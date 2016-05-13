@@ -34,5 +34,10 @@
             <artifactId>shiyan-api-manager</artifactId>
             <version>${shiyan.shiyan-api-manager.version}</version>
         </dependency>
+        <dependency>
+            <groupId>shiyan</groupId>
+            <artifactId>shiyan-api-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

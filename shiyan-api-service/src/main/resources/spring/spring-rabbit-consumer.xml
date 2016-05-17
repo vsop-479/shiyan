@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+    <!--连接服务配置-->
+    <rabbit:connection-factory id="connectionFactory" host="${rabbit.host}"
+                               username="${rabbit.username}" password="${rabbit.pwd}" port="${rabbit.port}"/>
+    <rabbit:admin connection-factory="connectionFactory"/>
+    <!--订单队列指定-->
+    <rabbit:queue id="order_queue" name="order_queue" durable="true" auto-delete="false"
+                  exclusive="false"/>
+    <!--队列 json 转化 queue 绑定-->
+    <rabbit:direct-exchange id="order_exchange" name="order_exchange" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="order_queue" key="order_queue_key"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+    <!--配置消费的线程池, 线程的执行任务既为消费者取消息-->
+    <!--多个消费者(listener)时才会使用线程中的多个线程-->
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!--core size-->
+        <property name="corePoolSize" value="4"/>
+        <!--线程存在的空闲时间-->
+        <property name="keepAliveSeconds" value="30000"/>
+        <!--max size-->
+        <property name="maxPoolSize" value="10"/>
+        <!--线程池所待处理任务的缓冲队列-->
+        <property name="queueCapacity" value="5000"/>
+    </bean>
+    <!--queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto" task-executor="taskExecutor">
+        <!--多个消费者，为保证同一条记录插入在修改之前，用信号量Semaphore，先批量插入，再修改-->
+        <rabbit:listener ref="orderQueueListener1" queues="order_queue"/>
+        <rabbit:listener ref="orderQueueListener2" queues="order_queue"/>
+        <rabbit:listener ref="orderQueueListener3" queues="order_queue"/>
+    </rabbit:listener-container>
+</beans>

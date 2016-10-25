@@ -6,12 +6,12 @@ import java.net.URLClassLoader;
  * Created by Administrator on 2016/3/28.
  */
 public class Test {
-    public static void main(String[] args) throws ClassNotFoundException {
-//        ClassLoader loader = new URLClassLoader(null);
-//        Class<?> aClass = loader.loadClass("");
-
-        System.out.println(Test.class.getClassLoader());
-//        Class.forName("shiyan.test.classLoader.Test", true, Test.class.getClassLoader().getParent());
-        Class.forName("shiyan.test.classLoader.Test");
+    public static void main(String[] args){
+        String s = "abcd";
+        Integer i = 1234;
+        System.out.println(s.hashCode());
+        System.out.println(i.hashCode());
+//        System.out.printf();
+//        System.out.format();
     }
 }

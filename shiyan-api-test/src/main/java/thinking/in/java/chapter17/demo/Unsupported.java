@@ -1,9 +1,6 @@
 package thinking.in.java.chapter17.demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Administrator on 2016/10/31.
@@ -61,10 +58,14 @@ public class Unsupported {
     public static void main(String[] args){
 //        返回一个固定长度的list，不支持add, remove
 //        retainAll在且只在能保留所有原元素时，可以支持。
+        //      Arrays.asList，尺寸固定但可以修改元素。
         List<String> list = Arrays.asList("A,B,C,D,E,F,G,H,I,J,K,L".split(","));
 //        生成新的list，可以修改
         test("Modifiable Copy", new ArrayList<String>(list));
 //        不可添加，移除元素
         test("Arrays.asList", list);
+
+//        Collections.unmodifiableList不但尺寸固定，元素也不可以修改。
+        Collections.unmodifiableList(new ArrayList<String>(list));
     }
 }

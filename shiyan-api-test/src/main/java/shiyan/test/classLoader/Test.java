@@ -13,5 +13,19 @@ public class Test {
         System.out.println(i.hashCode());
 //        System.out.printf();
 //        System.out.format();
+        System.out.println(d());
     }
+
+    public static String d(){
+        try{
+            throw new RuntimeException();
+
+        }catch(Exception e){
+            return "aaa";
+        }finally {
+            return "bbb";
+        }
+
+    }
+
 }

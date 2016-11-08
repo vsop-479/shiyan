@@ -29,7 +29,7 @@ final class Singleton{
     }
 
 //    单例不应该实现clone
-//    public Singleton clone(){
+//    public Singleton clone(){a
 //        return s;
 //    }
 

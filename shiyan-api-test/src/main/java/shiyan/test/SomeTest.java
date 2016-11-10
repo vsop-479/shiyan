@@ -10,9 +10,22 @@ import java.util.UUID;
  */
 public class SomeTest {
     public static void main(String[] args){
-        for(int i = 0; i < 10; i++){
-            System.out.println(UUID.randomUUID().toString());
-        }
+        String str1 = "hello";
+        String str2 = "he" + new String("llo");
+        System.err.println(str1 == str2);
+        System.err.println(str1.equals(str2));
+        System.err.println(Double.NaN );
+        System.err.println((Double.NaN > Double.NaN) || (Double.NaN <= Double.NaN));
+    }
+}
+
+
+class A{
+    private A(){
+
+    }
+
+    private void A(){
 
     }
 }

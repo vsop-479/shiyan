@@ -1,4 +1,4 @@
-package shiyan.test.headfirst;
+package shiyan.test.headfirst.strategy;
 
 /**
  * Created by Administrator on 2016/11/10.

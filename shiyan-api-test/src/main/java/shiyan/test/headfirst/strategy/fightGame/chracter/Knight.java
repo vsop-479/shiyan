@@ -1,7 +1,6 @@
-package shiyan.test.headfirst.fightGame.chracter;
+package shiyan.test.headfirst.strategy.fightGame.chracter;
 
-import shiyan.test.headfirst.fightGame.weapon.AxeBehavior;
-import shiyan.test.headfirst.fightGame.weapon.BowAndArrowBehavior;
+import shiyan.test.headfirst.strategy.fightGame.weapon.AxeBehavior;
 
 /**
  * Created by Administrator on 2016/11/10.

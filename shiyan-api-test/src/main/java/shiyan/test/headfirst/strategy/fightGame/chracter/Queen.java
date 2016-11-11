@@ -1,6 +1,6 @@
-package shiyan.test.headfirst.fightGame.chracter;
+package shiyan.test.headfirst.strategy.fightGame.chracter;
 
-import shiyan.test.headfirst.fightGame.weapon.KnifeBehavior;
+import shiyan.test.headfirst.strategy.fightGame.weapon.KnifeBehavior;
 
 /**
  * Created by Administrator on 2016/11/10.

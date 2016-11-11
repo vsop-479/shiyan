@@ -1,8 +1,8 @@
-package shiyan.test.headfirst.fightGame;
+package shiyan.test.headfirst.strategy.fightGame;
 
-import shiyan.test.headfirst.fightGame.chracter.*;
-import shiyan.test.headfirst.fightGame.weapon.BowAndArrowBehavior;
-import shiyan.test.headfirst.fightGame.weapon.WeaponBehavior;
+import shiyan.test.headfirst.strategy.fightGame.chracter.*;
+import shiyan.test.headfirst.strategy.fightGame.weapon.BowAndArrowBehavior;
+import shiyan.test.headfirst.strategy.fightGame.weapon.WeaponBehavior;
 
 /**
  * Created by Administrator on 2016/11/10.
@@ -10,7 +10,7 @@ import shiyan.test.headfirst.fightGame.weapon.WeaponBehavior;
 public class Test {
     public static void main(String[] args){
 //        构造时指定了默认的weapon
-        shiyan.test.headfirst.fightGame.chracter.Character c = new Queen();
+        shiyan.test.headfirst.strategy.fightGame.chracter.Character c = new Queen();
         c.fight();
 //        通过set切换weapon
         c.setWeapon(new BowAndArrowBehavior());

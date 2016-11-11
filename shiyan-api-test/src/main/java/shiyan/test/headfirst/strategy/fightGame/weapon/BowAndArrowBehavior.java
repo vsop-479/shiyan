@@ -1,4 +1,4 @@
-package shiyan.test.headfirst.fightGame.weapon;
+package shiyan.test.headfirst.strategy.fightGame.weapon;
 
 /**
  * Created by Administrator on 2016/11/10.

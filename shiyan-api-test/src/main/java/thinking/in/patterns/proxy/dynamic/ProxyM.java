@@ -29,8 +29,8 @@ class PInvocation implements InvocationHandler{
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("---------before--------");
-        method.invoke(target, args);
+        Object o = method.invoke(target, args);
         System.out.println("---------after--------");
-        return null;
+        return o;
     }
 }

@@ -1,25 +1,37 @@
-package shiyan.test.headfirst.component_patterns;
+package shiyan.test.headfirst.component_patterns.object_component;
 
 import shiyan.test.headfirst.component_patterns.duck.Quackable;
-import shiyan.test.headfirst.component_patterns.goose.Goose;
 import shiyan.test.headfirst.component_patterns.observer.Observer;
 import shiyan.test.headfirst.component_patterns.observer.QuackObservable;
 import shiyan.test.headfirst.component_patterns.observer.QuackObservableImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
- * Created by Administrator on 2016/11/22.
- * 鹅的honk接口适配成鸭子的quack接口
+ * Created by Administrator on 2016/11/23.
+ * 组合模式:
+ * 使对象集合像一个对象一样被使用
  */
-public class Goose2DuckAdapter implements Quackable {
+public class Flock implements Quackable{
     QuackObservable quackObservable;
-    private Goose goose;
-    public Goose2DuckAdapter(Goose goose){
-        this.goose = goose;
+    public List<Quackable> list = new ArrayList<>();
+
+    public Flock(){
         quackObservable = new QuackObservableImpl(this);
     }
+
+    public void add(Quackable quackable){
+        list.add(quackable);
+    }
+
     @Override
     public void quack() {
-        goose.honk();
+        Iterator<Quackable> iterator = list.iterator();
+        while (iterator.hasNext()){
+            iterator.next().quack();
+        }
         notifyObservers();
     }
 

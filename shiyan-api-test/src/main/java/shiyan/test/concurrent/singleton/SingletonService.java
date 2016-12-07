@@ -1,4 +1,4 @@
-package shiyan.test.concurrent;
+package shiyan.test.concurrent.singleton;
 
 /**
  * Created by Administrator on 2015/12/9.
@@ -27,7 +27,7 @@ public class SingletonService {
 class A{
     public String b;
     public String getMsg(String s){
-//        return s;
-        return b;
+        return s;
+//        return b;
     }
 }

@@ -9,6 +9,8 @@ public class FibonacciTask extends RecursiveTask<Integer> {
     private int i;
     public FibonacciTask(int i){
         this.i = i;
+//        RuntimeException不必catch和throws
+        throw new RuntimeException();
     }
 
 //    小的不计算，枚举出

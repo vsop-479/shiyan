@@ -10,13 +10,44 @@ import java.util.UUID;
  */
 public class SomeTest {
     public static void main(String[] args){
-        sqrt();
-
-
-
-
+        try {
+            testClone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 
+    public static void testClone() throws CloneNotSupportedException {
+        B b = new B();
+//        一个新的对象，clone b的值
+        B clone = b.clone();
+        System.out.println(b == clone);
+    }
+
+//    clone contract:
+//    x.clone() != x
+//    x.clone().getClass() == x.getClass()
+//    x.clone().equals(x)
+    public static void classLoaderPractice(){
+        ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+        ClassLoader classLoader = SomeTest.class.getClassLoader();
+        ClassLoader parentClassLoader = classLoader.getParent();
+    }
+
+    public static void FloatDouble2Int(){
+        Float f = 33.33f;
+        System.out.println(f.intValue());
+        System.out.println(Float.floatToIntBits(f));
+    }
+    /**
+     * 任何对象与null都不等
+     */
+    public static void nullEquals(){
+        System.out.println(null instanceof SomeTest);
+        System.out.println(null == null);
+        System.out.println("" == null);
+        System.out.println("".equals(null));
+    }
 //    因数都是成对出现，a*a > (a+n)*(a-n) 所以判断N是否是质数，除到N的平方根即可。
     static void sqrt(){
         System.out.println(Math.sqrt(15));
@@ -59,5 +90,16 @@ abstract class A{
 
     private void A(){
 
+    }
+}
+
+class B implements Cloneable{
+    private final String s = "dss";
+    private final Integer i = 33;
+    public B(){
+    }
+
+    public B clone() throws CloneNotSupportedException {
+        return (B) super.clone();
     }
 }

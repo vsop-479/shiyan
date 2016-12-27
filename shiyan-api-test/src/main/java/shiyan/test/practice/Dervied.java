@@ -17,6 +17,8 @@ class Base {
     public Base() {
         tellName();
         printName();
+//      构造方法可以调用静态和final的方法
+        f();
     }
 
     public void tellName() {
@@ -25,6 +27,10 @@ class Base {
 
     public void printName() {
         System.out.println("Base print name: " + name);
+    }
+
+    public static void f(){
+        System.out.println("Base f(): ");
     }
 }
 public class Dervied extends Base{
@@ -43,6 +49,9 @@ public class Dervied extends Base{
         System.out.println("Dervied print name: " + name);
     }
 
+    public static void f(){
+        System.out.println("Dervied f(): ");
+    }
     public static void main(String[] args){
 
         new Dervied();

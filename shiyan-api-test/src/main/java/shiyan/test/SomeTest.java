@@ -10,10 +10,24 @@ import java.util.UUID;
  */
 public class SomeTest {
     public static void main(String[] args){
-        try {
-            testClone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+        throwfinally();
+    }
+
+    public static void throwfinally(){
+        try{
+            throw new RuntimeException("RuntimeException");
+        }catch(Exception e){
+            throw e;
+        }finally{
+            System.out.println("dsfsd");
+        }
+    }
+
+    public static void fort(){
+        hh:
+        for(;;){
+            System.out.println("dsf");
+            break hh;
         }
     }
 

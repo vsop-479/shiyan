@@ -1,18 +1,60 @@
 package shiyan.test;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+
+import java.util.*;
 
 /**
  * Created by Administrator on 2015/9/17.
  */
 public class SomeTest {
+    private static int counter = 0;
+    private byte[] b = new byte[2048];
     public static void main(String[] args){
-        throwfinally();
+        concurrentModify();
     }
 
+    public static void concurrentModify(){
+        List<SomeTest> list =  new ArrayList<>();
+        for(int i = 0; i < 10000; i++){
+            System.out.println(i);
+            list.add(new SomeTest());
+        }
+//不遍历迭代器，不会concurrentModifyException
+//        for(int i = 0; i < 10000; i++){
+//            SomeTest someTest = list.get(i);
+//            someTest = null;
+//            list.add(new SomeTest());
+//        }
+        System.out.println(list.size());
+
+//遍历迭代器，ConcurrentModificationException
+        Iterator<SomeTest> iterator = list.iterator();
+        while (iterator.hasNext()){
+            SomeTest someTest = iterator.next();
+            someTest = null;
+//            ConcurrentModificationException
+            list.add(new SomeTest());
+        }
+    }
+
+    public static void outOfMemory(){
+        List<SomeTest> list =  new ArrayList<>();
+        for(int i = 0; i < Math.pow(2, 31); i++){
+            System.out.println(i);
+            list.add(new SomeTest());
+        }
+    }
+
+    public static void stackOverFlow(){
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(counter++);
+        stackOverFlow();
+    }
     public static void throwfinally(){
         try{
             throw new RuntimeException("RuntimeException");

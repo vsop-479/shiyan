@@ -30,6 +30,10 @@ public class Test {
         System.out.println(signum(0));
         System.out.println(toBinaryString(5));
         System.out.println(toBinaryString(-5));
+        System.out.println(toHexString(16));
+        System.out.println(toHexString(15));
+        System.out.println(toOctalString(9));
+        System.out.println(toOctalString(-9));
 
     }
 
@@ -210,10 +214,24 @@ public class Test {
 
     /**
      * 返回i的16进制
+     * ex:16返回10
+     * 15返回F
+     * 如果为负数返回加上2^32
      * @param i
      * @return
      */
     public static String toHexString(int i){
         return Integer.toHexString(i);
+    }
+
+    /**
+     * 返回i的8进制
+     * ex:9返回11
+     * 如果为负数返回加上2^32
+     * @param i
+     * @return
+     */
+    public static String toOctalString(int i){
+        return Integer.toOctalString(i);
     }
 }

@@ -42,9 +42,78 @@ public class Test {
         System.out.println("main isAlive:" + isAlive(Thread.currentThread()));
         System.out.println("t1 isAlive:" + isAlive(t1));
 
-        System.out.println();
+        System.out.println("main isDaemon:" + isDaemon(Thread.currentThread()));
+        System.out.println("t1 isDaemon:" + isDaemon(t1));
+
+        System.out.println("main isInterrupted:" + isInterrupted(Thread.currentThread()));
+        System.out.println("t1 isInterrupted:" + isInterrupted(t1));
+
+//        join(t1);
+        join(t1, 5000);
+
+//        setDaemon(true, Thread.currentThread());
+//        setDaemon(true, t1);
+//        System.out.println("main isDaemon:" + isDaemon(Thread.currentThread()));
+//        System.out.println("t1 isDaemon:" + isDaemon(t1));
+
+        yield();
+        System.out.println("main stop");
     }
 
+    /**
+     * 暂停当前线程的执行,
+     * 由running回到runnable，重新等待CPU
+     */
+    public static void yield(){
+        Thread.yield();
+    }
+
+    /**
+     * 设置线程是否为守护线程
+     * 如果线程处于活动状态，会抛出IllegalThreadStateException
+     * @param on
+     * @param thread
+     */
+    public static void setDaemon(boolean on, Thread thread){
+        thread.setDaemon(on);
+    }
+
+    /**
+     * 当前线程等待（Waiting)指定线程终止
+     * @param thread
+     */
+    public static void join(Thread thread){
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 当前线程等待（Time_Waiting)指定线程终止
+     * 不超过millis毫秒
+     * @param thread
+     */
+    public static void join(Thread thread, long millis){
+        try {
+            thread.join(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean isInterrupted(Thread thread){
+        return thread.isInterrupted();
+    }
+    /**
+     * 是否为守护线程
+     * @param thread
+     * @return
+     */
+    public static boolean isDaemon(Thread thread){
+        return thread.isDaemon();
+    }
     /**
      * 线程是否处于活动状态
      * @param thread

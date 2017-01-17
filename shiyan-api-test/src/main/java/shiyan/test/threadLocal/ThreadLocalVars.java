@@ -9,4 +9,16 @@ public class ThreadLocalVars {
     public static ThreadLocal<String> getOid() {
         return oid;
     }
+
+    private static final ThreadLocal<String> name = new ThreadLocal<String>();
+
+    public static ThreadLocal<String> getName() {
+        return name;
+    }
+
+    private static final ThreadLocal<String> description = new ThreadLocal<String>();
+
+    public static ThreadLocal<String> getDescription() {
+        return description;
+    }
 }

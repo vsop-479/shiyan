@@ -11,6 +11,10 @@ class Value{
 
 /**
  * Created by Administrator on 2016/1/14.
+ * final必须在定义处或者构造方法中进行赋值。
+ * 无论什么情况，编译器都确保空白final在使用前必须被初始化。
+ * 意味着并发访问同一对象的时，final域可以保证完整可见。
+ *
  * final和static final的区别：
  * final：每个对象会有一个独立的值，可能不一样
  * static final：所有对象共享一个值

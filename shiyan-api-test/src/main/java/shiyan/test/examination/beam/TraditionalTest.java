@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/2/28.
  * WordCountExample（未优化）与TraditionalTest比较
- * 读取16m的数据，统计单词个数
+ * 读取16m的数据文件，统计单词个数
  * WordCountExample执行时间：330240
  * TraditionalTest执行时间：1823
  *

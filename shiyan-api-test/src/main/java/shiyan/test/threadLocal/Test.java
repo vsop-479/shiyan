@@ -1,7 +1,5 @@
 package shiyan.test.threadLocal;
 
-import com.sun.xml.internal.bind.v2.model.runtime.RuntimeNonElement;
-
 import java.util.UUID;
 
 /**

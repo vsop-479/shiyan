@@ -12,7 +12,12 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * 400-890-0000 转 688561
+ * 53580
  * Created by Administrator on 2017/2/23.
+ * 115844
+ * 4000-325706-113560
+ * 4000-880099-47693
  */
 public class CardProvider {
     public static List<Card> cardList = new ArrayList<>(54);

@@ -14,7 +14,7 @@ public class Test {
     public static void redisCluster(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         RedisTemplate redisTemplate = (RedisTemplate) context.getBean("redisTemplate");
-        Object a1 = redisTemplate.opsForValue().get("a1");
+        Object a1 = redisTemplate.opsForValue().get("dd");
         String value = (String) redisTemplate.opsForValue().get("hello");
         value = (String) redisTemplate.opsForValue().get("foo");
         System.out.println();

@@ -2,6 +2,8 @@ package shiyan.test;
 
 
 
+import redis.clients.jedis.Jedis;
+
 import java.util.*;
 
 /**
@@ -11,7 +13,16 @@ public class SomeTest {
     private static int counter = 0;
     private byte[] b = new byte[2048];
     public static void main(String[] args){
-        concurrentModify();
+        redisClusterSlotNum();
+    }
+
+    /**
+     * 测试redis-cluster-slot个数16384
+     * 是2的14次方
+     */
+    public static void redisClusterSlotNum(){
+        double pow = Math.pow(2, 14);
+        System.out.println(pow);
     }
 
     public static void concurrentModify(){

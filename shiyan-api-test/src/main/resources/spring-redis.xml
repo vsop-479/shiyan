@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+    <!--jedisShardInfo-->
+    <bean id="jedisShardInfo" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg name="host" value="localhost"/>
+        <constructor-arg name="port" value="6379"/>
+    </bean>
+
+    <!--redisSentinelConfiguration-->
+    <bean id="redisSentinelConfiguration" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+        <!--<property name="master">-->
+            <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
+                <!--<property name="name" value="redMaster"/>-->
+            <!--</bean>-->
+        <!--</property>-->
+        <!--<property name="sentinels">-->
+            <!--<set>-->
+                <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
+                    <!--<constructor-arg name="host" value="localhost"/>-->
+                    <!--<constructor-arg name="port" value="26380"/>-->
+                <!--</bean>-->
+                <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
+                    <!--<constructor-arg name="host" value="localhost"/>-->
+                    <!--<constructor-arg name="port" value="26381"/>-->
+                <!--</bean>-->
+                <!--<bean class="org.springframework.data.redis.connection.RedisNode">-->
+                    <!--<constructor-arg name="host" value="localhost"/>-->
+                    <!--<constructor-arg name="port" value="26382"/>-->
+                <!--</bean>-->
+            <!--</set>-->
+        <!--</property>-->
+    </bean>
+
+    <!--redisClusterConfiguration-->
+    <bean id="redisClusterConfiguration" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+        <!--集群中的任意一个或多个节点，master，slave都行-->
+        <property name="clusterNodes">
+            <set>
+                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                    <constructor-arg name="host" value="10.6.105.122"/>
+                    <constructor-arg name="port" value="6379"/>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisClusterNode">
+                    <constructor-arg name="host" value="10.6.105.127"/>
+                    <constructor-arg name="port" value="6379"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <!--可以配置jedisShardInfo，redisSentinelConfiguration，redisClusterConfiguration-->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <constructor-arg ref="redisClusterConfiguration"/>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+    </bean>
+</beans>

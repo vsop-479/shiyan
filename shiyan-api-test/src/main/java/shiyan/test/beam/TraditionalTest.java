@@ -1,4 +1,4 @@
-package shiyan.test.examination.beam;
+package shiyan.test.beam;
 
 import java.io.*;
 import java.util.HashMap;

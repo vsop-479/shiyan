@@ -4,6 +4,8 @@ CREATE TABLE `users` (
   `pwd` varchar(32) DEFAULT NULL,
   `email` varchar(32) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`oid`),
   UNIQUE KEY `unique_index_users_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8

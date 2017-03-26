@@ -18,18 +18,22 @@
             oid = #{oid}
         </where>
     </update>
-
-    <delete id="DELETE-USER" parameterType="java.lang.String">
+    <!--只能里面多加一个map-->
+    <delete id="DELETE-USER" parameterType="java.util.Map">
         DELETE FROM users
         <where>
-            oid = #{oid}
+            <foreach collection="map" item="value" index="key" separator="and">
+                ${key} = #{value}
+            </foreach>
         </where>
     </delete>
-
-    <select id="GET-USER" parameterType="java.lang.String">
+    <!--只能里面多加一个map-->
+    <select id="GET-USER" parameterType="java.util.Map" resultType="user">
         select oid, createTime, updateTime, name, pwd, email, phone FROM users
         <where>
-            name = #{name}
+            <foreach collection="map" item="value" index="key" separator="and">
+                ${key} = #{value}
+            </foreach>
         </where>
     </select>
 </mapper>

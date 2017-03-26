@@ -6,6 +6,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="true" default-autowire="byName">
     <context:component-scan base-package="shiyan"/>
-    <import resource="classpath*:spring/spring-*.xml"/>
+    <!--<import resource="classpath*:spring/spring-*.xml"/>-->
+    <import resource="classpath*:spring-redis.xml"/>
 
 </beans>

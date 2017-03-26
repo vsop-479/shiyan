@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+    <!--服务配置-->
+    <rabbit:connection-factory id="connectionFactory" host="${rabbit.host}"
+                               username="${rabbit.username}" password="${rabbit.pwd}" port="${rabbit.port}"/>
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!--订单队列指定-->
+    <rabbit:queue id="order_queue" name="order_queue" durable="true" auto-delete="false"
+                  exclusive="false"/>
+
+    <!--队列 json 转化 queue 绑定-->
+    <rabbit:direct-exchange id="order_exchange" name="order_exchange" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="order_queue" key="order_queue_key"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!--spring amqp默认的是jackson 的一个插件,目的将生产者生产的数据转换为json存入消息队列，
+    由于fastjson的速度快于jackson,这里替换为gson的一个实现-->
+    <bean id="jsonMessageConverter" class="shiyan.common.utils.GsonMessageConverter"/>
+
+    <!--json 转化发送器指定：用于将对象转化成json并发送消息-->
+    <!--provider 用orderMQTemplate发送消息-->
+    <rabbit:template id="orderMQTemplate" exchange="order_exchange"
+                     connection-factory="connectionFactory" message-converter="jsonMessageConverter"/>
+</beans>

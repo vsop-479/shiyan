@@ -1,7 +1,4 @@
-package shiyan.test.concurrent;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+package shiyan.test.concurrent.singleton;
 
 /**
  * Created by Administrator on 2015/12/9.

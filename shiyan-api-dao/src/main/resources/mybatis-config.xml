@@ -3,6 +3,7 @@
         "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--一级缓存（同一session）被spring open session 废掉-->
     <!--<settings>-->
         <!--<setting name="cacheEnabled" value="true"/>-->
     <!--</settings>-->

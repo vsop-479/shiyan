@@ -1,135 +1,136 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
-<!--<mapper namespace="orderMapper">-->
-    <!--&lt;!&ndash;<cache eviction="LRU" type="cache.MybatisRedisCache"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;通过flushStatements，批量操作，忽略错误，继续执行&ndash;&gt;-->
-    <!--<insert id="INSERT-ORDER" parameterType="order">-->
-        <!--INSERT INTO t_order-->
-        <!--(userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,-->
-        <!--sourceId, os, mid, userIp, extend, orderPrice)-->
-        <!--VALUES-->
-        <!--(#{userId}, #{orderId}, #{showId}, #{skuIds}, #{createTime}, #{modifyTime}, #{payMode}, #{status},-->
-            <!--#{sourceId}, #{os}, #{mid}, #{userIp}, #{extend}, #{orderPrice})-->
-    <!--</insert>-->
-    <!--&lt;!&ndash;insert into t (c) values (c1),(c2),(c3);此种批量插入若一条出错，一个都不能插入&ndash;&gt;-->
-    <!--<insert id="BATCH-INSERT-ORDER2" parameterType="java.util.List">-->
-        <!--INSERT INTO t_order-->
-        <!--(userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,-->
-        <!--sourceId, os, mid, userIp, extend, orderPrice)-->
-        <!--VALUES-->
-        <!--<foreach collection="list" item="item" index="index" separator=",">-->
-            <!--(#{item.userId}, #{item.orderId}, #{item.showId}, #{item.skuIds},-->
-            <!--#{item.createTime}, #{item.modifyTime}, #{item.payMode}, #{item.status},-->
-            <!--#{item.sourceId}, #{item.os}, #{item.mid}, #{item.userIp}, #{item.extend}, #{item.orderPrice})-->
-        <!--</foreach>-->
-    <!--</insert>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orderMapper">
+    <!--二级缓存-->
+    <!--<cache eviction="LRU" type="cache.MybatisRedisCache"/>-->
+    <!--通过flushStatements，批量操作，忽略错误，继续执行-->
+    <insert id="INSERT-ORDER" parameterType="order">
+        INSERT INTO t_order
+        (userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,
+        sourceId, os, mid, userIp, extend, orderPrice)
+        VALUES
+        (#{userId}, #{orderId}, #{showId}, #{skuIds}, #{createTime}, #{modifyTime}, #{payMode}, #{status},
+            #{sourceId}, #{os}, #{mid}, #{userIp}, #{extend}, #{orderPrice})
+    </insert>
+    <!--insert into t (c) values (c1),(c2),(c3);此种批量插入若一条出错，一个都不能插入-->
+    <insert id="BATCH-INSERT-ORDER2" parameterType="java.util.List">
+        INSERT INTO t_order
+        (userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,
+        sourceId, os, mid, userIp, extend, orderPrice)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userId}, #{item.orderId}, #{item.showId}, #{item.skuIds},
+            #{item.createTime}, #{item.modifyTime}, #{item.payMode}, #{item.status},
+            #{item.sourceId}, #{item.os}, #{item.mid}, #{item.userIp}, #{item.extend}, #{item.orderPrice})
+        </foreach>
+    </insert>
 
-    <!--&lt;!&ndash;insert into t (c) values (c1);insert into t (c) values (c2);多条sql语句，中间出错，影响下面的执行&ndash;&gt;-->
-    <!--<insert id="BATCH-INSERT-ORDER" parameterType="java.util.List">-->
-        <!--<foreach collection="list" item="item" index="index" open="" close="" separator=";">-->
-            <!--INSERT INTO t_order-->
-            <!--(userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,-->
-            <!--sourceId, os, mid, userIp, extend, orderPrice)-->
-            <!--VALUES-->
-            <!--(#{item.userId}, #{item.orderId}, #{item.showId}, #{item.skuIds},-->
-            <!--#{item.createTime}, #{item.modifyTime}, #{item.payMode}, #{item.status},-->
-            <!--#{item.sourceId}, #{item.os}, #{item.mid}, #{item.userIp}, #{item.extend}, #{item.orderPrice})-->
-        <!--</foreach>-->
-    <!--</insert>-->
+    <!--insert into t (c) values (c1);insert into t (c) values (c2);多条sql语句，中间出错，影响下面的执行-->
+    <insert id="BATCH-INSERT-ORDER" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            INSERT INTO t_order
+            (userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,
+            sourceId, os, mid, userIp, extend, orderPrice)
+            VALUES
+            (#{item.userId}, #{item.orderId}, #{item.showId}, #{item.skuIds},
+            #{item.createTime}, #{item.modifyTime}, #{item.payMode}, #{item.status},
+            #{item.sourceId}, #{item.os}, #{item.mid}, #{item.userIp}, #{item.extend}, #{item.orderPrice})
+        </foreach>
+    </insert>
 
-    <!--<select id="GET-BY-ID-ORDER" parameterType="java.lang.String" resultType="order">-->
-        <!--SELECT userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,-->
-        <!--sourceId, os, mid, userIp, extend, orderPrice-->
-        <!--FROM t_order-->
-        <!--<where>-->
-              <!--userId = #{userId}-->
-        <!--</where>-->
-    <!--</select>-->
+    <select id="GET-BY-ID-ORDER" parameterType="java.lang.String" resultType="order">
+        SELECT userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,
+        sourceId, os, mid, userIp, extend, orderPrice
+        FROM t_order
+        <where>
+              userId = #{userId}
+        </where>
+    </select>
 
-    <!--<select id="GET-ORDER" parameterType="order" resultType="order">-->
-        <!--SELECT userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,-->
-        <!--sourceId, os, mid, userIp, extend, orderPrice-->
-        <!--FROM t_order-->
-        <!--<where>-->
-            <!--<if test="userId != null">-->
-                <!--userId = #{userId}-->
-            <!--</if>-->
-            <!--<if test="orderId != null">-->
-                <!--AND orderId = #{orderId}-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
+    <select id="GET-ORDER" parameterType="order" resultType="order">
+        SELECT userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,
+        sourceId, os, mid, userIp, extend, orderPrice
+        FROM t_order
+        <where>
+            <if test="userId != null">
+                userId = #{userId}
+            </if>
+            <if test="orderId != null">
+                AND orderId = #{orderId}
+            </if>
+        </where>
+    </select>
 
-    <!--<select id="GET-ALL-ORDER" resultType="order">-->
-        <!--SELECT userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,-->
-         <!--sourceId, os, mid, userIp, extend, orderPrice-->
-        <!--FROM t_order limit 0, 99-->
-    <!--</select>-->
+    <select id="GET-ALL-ORDER" resultType="order">
+        SELECT userId, orderId, showId, skuIds, createTime, modifyTime, payMode, status,
+         sourceId, os, mid, userIp, extend, orderPrice
+        FROM t_order limit 0, 99
+    </select>
 
-    <!--<update id="UPDATE-ORDER" parameterType="order">-->
-        <!--UPDATE t_order-->
-        <!--<set>-->
-            <!--modifyTime = #{modifyTime}, status = #{status},-->
-            <!--sourceId = #{sourceId}, os = #{os}, mid = #{mid}, userIp = #{userIp}, extend = #{extend}-->
-        <!--</set>-->
-        <!--<where>-->
-            <!--<if test="userId != null">-->
-                <!--userId = #{userId}-->
-            <!--</if>-->
-            <!--<if test="orderId != null">-->
-                <!--AND orderId = #{orderId}-->
-            <!--</if>-->
-            <!--<if test="showId != null">-->
-                <!--AND showId = #{showId}-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</update>-->
+    <update id="UPDATE-ORDER" parameterType="order">
+        UPDATE t_order
+        <set>
+            modifyTime = #{modifyTime}, status = #{status},
+            sourceId = #{sourceId}, os = #{os}, mid = #{mid}, userIp = #{userIp}, extend = #{extend}
+        </set>
+        <where>
+            <if test="userId != null">
+                userId = #{userId}
+            </if>
+            <if test="orderId != null">
+                AND orderId = #{orderId}
+            </if>
+            <if test="showId != null">
+                AND showId = #{showId}
+            </if>
+        </where>
+    </update>
 
-    <!--<update id="BATCH-UPDATE-ORDER" parameterType="java.util.List">-->
-        <!--<foreach collection="list" item="item" index="index" open="" close="" separator=";">-->
-            <!--UPDATE order-->
-            <!--<set>-->
-                <!--modifyTime = #{item.modifyTime}, status = #{item.status},-->
-                <!--sourceId = #{item.sourceId}, os = #{item.os}, mid = #{item.mid}, userIp = #{item.userIp}, extend = #{item.extend}-->
-            <!--</set>-->
-            <!--<where>-->
-                <!--<if test="userId != null">-->
-                    <!--userId = #{item.userId}-->
-                <!--</if>-->
-                <!--<if test="orderId != null">-->
-                    <!--AND orderId = #{item.orderId}-->
-                <!--</if>-->
-            <!--</where>-->
-        <!--</foreach>-->
-    <!--</update>-->
+    <update id="BATCH-UPDATE-ORDER" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE order
+            <set>
+                modifyTime = #{item.modifyTime}, status = #{item.status},
+                sourceId = #{item.sourceId}, os = #{item.os}, mid = #{item.mid}, userIp = #{item.userIp}, extend = #{item.extend}
+            </set>
+            <where>
+                <if test="userId != null">
+                    userId = #{item.userId}
+                </if>
+                <if test="orderId != null">
+                    AND orderId = #{item.orderId}
+                </if>
+            </where>
+        </foreach>
+    </update>
 
-    <!--<delete id="DELETE-ORDER" parameterType="java.util.Map">-->
-        <!--DELETE FROM t_order-->
-        <!--<where>-->
-            <!--<if test="userId != null">-->
-                <!--userId = #{userId}-->
-            <!--</if>-->
-            <!--<if test="orderId != null">-->
-                <!--AND orderId = #{orderId}-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</delete>-->
+    <delete id="DELETE-ORDER" parameterType="java.util.Map">
+        DELETE FROM t_order
+        <where>
+            <if test="userId != null">
+                userId = #{userId}
+            </if>
+            <if test="orderId != null">
+                AND orderId = #{orderId}
+            </if>
+        </where>
+    </delete>
 
-    <!--&lt;!&ndash;适合包含嵌套对象的结果&ndash;&gt;-->
-    <!--<resultMap id="orderResultMap" type="order">-->
-        <!--<result column="userId" property="userId"/>-->
-        <!--<result column="orderId" property="orderId"/>-->
-        <!--<result column="showId" property="showId"/>-->
-        <!--<result column="skuIds" property="skuIds"/>-->
-        <!--<result column="createTime" property="createTime"/>-->
-        <!--<result column="modifyTime" property="modifyTime"/>-->
-        <!--<result column="payMode" property="payMode"/>-->
-        <!--<result column="status" property="status"/>-->
-        <!--<result column="sourceId" property="sourceId"/>-->
-        <!--<result column="os" property="os"/>-->
-        <!--<result column="mid" property="mid"/>-->
-        <!--<result column="userIp" property="userIp"/>-->
-        <!--<result column="extend" property="extend"/>-->
-        <!--<result column="orderPrice" property="orderPrice"/>-->
-    <!--</resultMap>-->
-<!--</mapper>-->
+    <!--适合包含嵌套对象的结果-->
+    <resultMap id="orderResultMap" type="order">
+        <result column="userId" property="userId"/>
+        <result column="orderId" property="orderId"/>
+        <result column="showId" property="showId"/>
+        <result column="skuIds" property="skuIds"/>
+        <result column="createTime" property="createTime"/>
+        <result column="modifyTime" property="modifyTime"/>
+        <result column="payMode" property="payMode"/>
+        <result column="status" property="status"/>
+        <result column="sourceId" property="sourceId"/>
+        <result column="os" property="os"/>
+        <result column="mid" property="mid"/>
+        <result column="userIp" property="userIp"/>
+        <result column="extend" property="extend"/>
+        <result column="orderPrice" property="orderPrice"/>
+    </resultMap>
+</mapper>

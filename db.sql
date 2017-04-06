@@ -14,4 +14,4 @@ CREATE TABLE `users` (
 -- 被用来分表的列，必须属于每一个unique
 -- 如表有unique1:a; unique2:[a,b];unique3:[a,b,c].
 -- 此时只有a满足同时属于所有unique，所以只有a可以用来分表。
---可以在程序中实现按name分表，因大多查找用name作为条件，
+# 可以在程序中实现按name分表，因大多查找用name作为条件。

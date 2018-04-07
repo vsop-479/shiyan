@@ -1,27 +1,19 @@
 package shiyan.test.kafka.consumer;
 
 
-import kafka.consumer.Consumer;
-import kafka.consumer.ConsumerConfig;
-import kafka.consumer.ConsumerIterator;
-import kafka.consumer.KafkaStream;
-import kafka.javaapi.consumer.ConsumerConnector;
-import kafka.message.MessageAndMetadata;
-import kafka.serializer.StringDecoder;
-import kafka.utils.VerifiableProperties;
-import shiyan.test.kafka.producer.KafkaProducer;
-
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.common.TopicPartition;
+import shiyan.test.kafka.Common;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by Administrator on 2015/9/17.
  */
 public class KafkaConsumer {
-    private final ConsumerConnector consumer;
+    private final Consumer consumer;
 
     private KafkaConsumer(){
         Properties props = new Properties();
@@ -30,27 +22,27 @@ public class KafkaConsumer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ConsumerConfig consumerConfig = new ConsumerConfig(props);
-        consumer = Consumer.createJavaConsumerConnector(consumerConfig);
+        consumer = new org.apache.kafka.clients.consumer.KafkaConsumer(props);
     }
 
-    private void consumer(){
-        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-        topicCountMap.put(KafkaProducer.TOPIC, new Integer(1));
-        StringDecoder keyDecoder = new StringDecoder(new VerifiableProperties());
-        StringDecoder valDecoder = new StringDecoder(new VerifiableProperties());
-        Map<String, List<KafkaStream<String, String>>> messageStreams =
-                consumer.createMessageStreams(topicCountMap, keyDecoder, valDecoder);
-        KafkaStream<String, String> messageAndMetadatas = messageStreams.get(KafkaProducer.TOPIC).get(0);
-        ConsumerIterator<String, String> iterator = messageAndMetadatas.iterator();
-        while(iterator.hasNext()){
-            MessageAndMetadata<String, String> messageAndMetadata = iterator.next();
-            System.out.println(messageAndMetadata.message());
+    private void consumer() throws InterruptedException {
+        List topics = new ArrayList<String>();
+        topics.add(Common.TOPIC);
+        consumer.subscribe(topics);
+//        List partitions = new ArrayList<String>();
+//        TopicPartition topicPartition = new TopicPartiion(Common.TOPIC, 0);
+//        partitions.add(topicPartition);
+//        consumer.beginningOffsets(partitions);
+        while(true){
+            ConsumerRecords<String, String> records = consumer.poll(200);
+            Iterator iterator = records.iterator();
+            for(ConsumerRecord<String, String> record : records){
+                System.out.println("value: " + record.value() + ", offset: " + record.offset());
+            }
         }
-        System.out.println("done");
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
         new shiyan.test.kafka.consumer.KafkaConsumer().consumer();
     }
 }
